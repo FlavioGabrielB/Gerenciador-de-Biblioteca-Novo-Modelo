@@ -9,16 +9,21 @@ from gui.gui import *
 
 class Menu(QMainWindow):
     def __init__(self):
+
+        #importa o metodo construtor da QMainWindow
         super().__init__()
         self.menu = Ui_MainWindow()
         self.menu.setupUi(self)
         
+        #Troca entre abas
         self.lb = QLabel(self.menu.frame_20)
         self.lb.hide()
         self.lb_2 = QLabel(self.menu.frame_20)
         self.lb.hide()
         self.lb_3 = QLabel(self.menu.frame_20)
         self.lb.hide()
+
+        #sessões de botões que chamam funções. abaixo as repectivas funções comentadas
 
         self.menu.pushButton_28.hide()
         self.menu.pushButton_28.clicked.connect(self.ed_u)
@@ -56,6 +61,7 @@ class Menu(QMainWindow):
         self.menu.pushButton_9.clicked.connect(self.aluno)
         self.menu.pushButton_10.clicked.connect(self.livro)
         
+        #Cria a tabela caso não exista e adiciona na pasta db
         self.banco_aluno = '''CREATE TABLE IF NOT EXISTS aluno (id integer not null primary key autoincrement, nome_aluno text, ano_serie text, cpf text)'''
 
         self.banco = sqlite3.connect('db/banco_aluno.db')
@@ -64,6 +70,7 @@ class Menu(QMainWindow):
         self.banco.commit()
         self.banco.close()
 
+        #Cria a tabela caso não exista e adiciona na pasta db
         self.banco_livro = '''CREATE TABLE IF NOT EXISTS livro (id integer not null primary key autoincrement, livro text, ISBN text, categoria text)'''
 
         self.banco = sqlite3.connect('db/banco_livro.db')
@@ -72,6 +79,7 @@ class Menu(QMainWindow):
         self.banco.commit()
         self.banco.close()
 
+        #Cria a tabela caso não exista e adiciona na pasta db
         self.banco_aluguel = '''CREATE TABLE IF NOT EXISTS aluguel (id integer not null primary key autoincrement, aluno text, livro text, dias integer, entragar text)'''
 
         self.banco = sqlite3.connect('db/banco_aluguel.db')
@@ -85,6 +93,8 @@ class Menu(QMainWindow):
         self.a_tabela()
         self.l_tabela()
         self.p_tabela()
+
+    #Pesquisa um dado selecionado da tabela de alunos
 
     def editar_a(self):
 
@@ -111,6 +121,8 @@ class Menu(QMainWindow):
         self.menu.pushButton_9.hide()
         self.menu.pushButton_30.show()
 
+    #Adiciona/Edita um dado selecionado da tabela de alugueis
+
     def ed_a(self):
         self.id_a = self.lb.text()
         self.nome_aluno = self.menu.lineEdit_4.text()
@@ -134,6 +146,8 @@ class Menu(QMainWindow):
 
         self.menu.pushButton_9.show()
         self.menu.pushButton_30.hide()
+
+    #Pesquisa um dado selecionado da tabela de livros
 
     def editar_l(self):
         self.linha = self.menu.tableWidget_3.currentRow()
@@ -159,6 +173,8 @@ class Menu(QMainWindow):
         self.menu.pushButton_10.hide()
         self.menu.pushButton_29.show()
 
+    #Edita/Adiciona um dado selecionado da tabela de alunos
+
     def ed_l (self):
         self.id_l = self.lb_2.text()
         self.nome_livro = self.menu.lineEdit_6.text()
@@ -181,6 +197,8 @@ class Menu(QMainWindow):
 
         self.menu.pushButton_10.show()
         self.menu.pushButton_29.hide()
+
+    #Pesquisa um dado selecionado da tabela de alugueis 
 
     def editar_u(self):
         self.linha = self.menu.tableWidget_2.currentRow()
@@ -206,6 +224,8 @@ class Menu(QMainWindow):
         self.menu.pushButton_11.hide()
         self.menu.pushButton_28.show()
     
+    #Edita/Adiciona um dado na tabela de livros
+
     def ed_u (self):
         self.id_3 = self.lb_3.text()
         self.alun = self.menu.label_14.text()
@@ -231,7 +251,7 @@ class Menu(QMainWindow):
         self.menu.pushButton_11.show()
         self.menu.pushButton_28.hide()
 
-
+    #Exclui um dado selecionado da tabela de alugueis
 
     def excluir_u(self):
         try:
@@ -250,6 +270,8 @@ class Menu(QMainWindow):
         except:
             self.menu.label.setText("Campo não encontrado!")
 
+    #Exclui um dado selecionado da tabela de livros
+
     def excluir_l(self):
         try:
             self.linha = self.menu.tableWidget_3.currentRow()
@@ -267,6 +289,8 @@ class Menu(QMainWindow):
         except:
             self.menu.label.setText("Campo não encontrado!")
 
+    #Exclui um dado selecionado da tabela aluno
+
     def excluir_a(self):
         try:
             self.linha = self.menu.tableWidget.currentRow()
@@ -283,6 +307,7 @@ class Menu(QMainWindow):
         except:
             self.menu.label.setText("Campo não encontrado!")
             
+    #pesquisa os alugueis
 
     def pesquisar_u(self):
         self.texto = self.menu.lineEdit_3.text()
@@ -298,11 +323,16 @@ class Menu(QMainWindow):
             for self.j in range(0,4):
                 self.menu.tableWidget_2.setItem(self.i,self.j,QTableWidgetItem(str(self.dados_lidos[self.i][self.j])))             
         self.banco.close()
+    
+    #Troca de tabelas durante a escolha dos dados
+
     def ps3(self):
         self.menu.stackedWidget.setCurrentWidget(self.menu.page_3)
         self.a_tabela()
         self.l_tabela()
         self.p_tabela()
+
+    #Pesquisa na tabela Livros
 
     def pesquisar_l(self):
         self.texto = self.menu.lineEdit_2.text()
@@ -319,6 +349,8 @@ class Menu(QMainWindow):
                 self.menu.tableWidget_3.setItem(self.i,self.j,QTableWidgetItem(str(self.dados_lidos[self.i][self.j])))             
         self.banco.close()
 
+    #Pesquisa na tabela alunos
+
     def pesquisar_a(self):
         self.texto = self.menu.lineEdit.text()
         #print(self.texto)
@@ -334,7 +366,7 @@ class Menu(QMainWindow):
                 self.menu.tableWidget.setItem(self.i,self.j,QTableWidgetItem(str(self.dados_lidos[self.i][self.j])))             
         self.banco.close()
 
-
+    #atualiza tabela de alugueis
 
     def p_tabela(self):
         self.banco = sqlite3.connect('db/banco_aluguel.db', timeout=1)
@@ -349,6 +381,7 @@ class Menu(QMainWindow):
                 self.menu.tableWidget_2.setItem(self.i,self.j,QTableWidgetItem(str(self.dados_lidos[self.i][self.j])))
         self.banco.close()    
 
+    #Calcula a data final de entrega
 
     def enviar_p(self):
         self.alun = self.menu.label_14.text()
@@ -370,6 +403,8 @@ class Menu(QMainWindow):
             self.csr.execute(self.b)
             self.banco.commit()
             self.banco.close()
+            self.p_tabela()
+
         except:
             self.menu.label("Error")
         self.menu.label_14.setText("")
@@ -386,6 +421,8 @@ class Menu(QMainWindow):
         self.menu.tabWidget.setCurrentWidget(self.menu.tab)
         self.menu.stackedWidget.setCurrentWidget(self.menu.page_3)
         self.menu.pushButton_24.show()
+
+    #Seleciona na tabela alunos o dado para tabela alugueis
 
     def se_aluno(self):
 
@@ -411,6 +448,8 @@ class Menu(QMainWindow):
        self.menu.stackedWidget.setCurrentWidget(self.menu.page_3)
        self.menu.pushButton_23.show()
 
+    #Seleciona na tabela livros o dado para tabela alugueis
+
     def se_livro(self):
 
         try:
@@ -429,8 +468,7 @@ class Menu(QMainWindow):
             self.menu.pushButton_23.hide()
         
         except:
-            self.menu.label.setText("Selecione o nome do Livro...")
-
+            self.menu.label.setText("Selecione o nome do Livro...") 
 
     def abrirlivro(self):
         self.uil.show()
@@ -444,6 +482,7 @@ class Menu(QMainWindow):
     def ps5(self):
         self.menu.stackedWidget.setCurrentWidget(self.menu.page)
 
+    #atualiza a tabela de alunos
 
     def a_tabela(self):
         self.banco = sqlite3.connect('db/banco_aluno.db', timeout=1)
@@ -458,6 +497,8 @@ class Menu(QMainWindow):
                 self.menu.tableWidget.setItem(self.i,self.j,QTableWidgetItem(str(self.dados_lidos[self.i][self.j])))
         self.banco.close()
 
+    #atualiza a tabela de livros
+
     def l_tabela(self):
         self.banco = sqlite3.connect('db/banco_livro.db', timeout=1)
         self.csr = self.banco.cursor()
@@ -471,6 +512,7 @@ class Menu(QMainWindow):
                 self.menu.tableWidget_3.setItem(self.i,self.j,QTableWidgetItem(str(self.dados_lidos[self.i][self.j])))
         self.banco.close()    
 
+    #Adiciona dados na tabela Alunos
 
     def aluno(self):
         
@@ -492,11 +534,14 @@ class Menu(QMainWindow):
                 self.menu.label.setText("Cadastro realizado com sucesso!")
                 self.menu.lineEdit_4.setText("")
                 self.menu.lineEdit_5.setText("")
+                self.a_tabela()
 
             else:
                 self.menu.label.setText("CPF Incorreto!")
         except:
             self.menu.label.setText("CPF Incorreto!")
+
+    #Adiciona dados na tabela Livro
 
     def livro(self):
         self.nome_livro = self.menu.lineEdit_6.text()
@@ -518,12 +563,13 @@ class Menu(QMainWindow):
                 self.menu.label.setText("Cadastro realizado com sucesso!")
                 self.menu.lineEdit_6.setText("")
                 self.menu.lineEdit_7.setText("")
-
+                self.l_tabela()
             else:
                 self.menu.label.setText("ISBN Incorreto!")
         except:
             self.menu.label.setText("ISBN Incorreto!")
 
+    #Controla o tamanho max e min da janela
 
     def diminuir(self):
         self.ms = self.menu.frame.maximumSize()
@@ -533,7 +579,7 @@ class Menu(QMainWindow):
 
         if self.win == 200:
             self.icon_ = QtGui.QIcon()
-            self.icon_.addPixmap(QtGui.QPixmap("../../../../Downloads/angle-right-free-icon-font.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+            self.icon_.addPixmap(QtGui.QPixmap("icons/right-arrow.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
             self.menu.pushButton_2.setIcon(self.icon_)
             self.menu.frame.setMinimumWidth(50)
             self.menu.frame.setMaximumWidth(50)
@@ -541,23 +587,19 @@ class Menu(QMainWindow):
             self.menu.pushButton_4.setText("")
             self.menu.pushButton_5.setText("")
             
+        #Expansão dos botões da lateral
         else:
             self.icon_z = QtGui.QIcon()
-            self.icon_z.addPixmap(QtGui.QPixmap("../../../../Downloads/angle-left-free-icon-font.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+            self.icon_z.addPixmap(QtGui.QPixmap("icons/left-arrow.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
             self.menu.pushButton_2.setIcon(self.icon_z)
             self.menu.frame.setMinimumWidth(200)
             self.menu.frame.setMaximumWidth(300)
             self.menu.pushButton_3.setText(" Gerenciar")
             self.menu.pushButton_4.setText(" Cadastrar")
             self.menu.pushButton_5.setText(" Sobre      ")
-
-
-        
         
     def limpar(self):
         self.menu.label.setText('')
-  
-
 
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
