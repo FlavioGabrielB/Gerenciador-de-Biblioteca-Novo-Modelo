@@ -11,7 +11,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainWindow.setObjectName("Gerenciador de Biblioteca")
         MainWindow.resize(640, 622)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -62,7 +62,7 @@ class Ui_MainWindow(object):
 "")
         self.pushButton_2.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("Icon/angle-left-free-icon-font.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("icons/angle-left.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_2.setIcon(icon)
         self.pushButton_2.setIconSize(QtCore.QSize(18, 18))
         self.pushButton_2.setObjectName("pushButton_2")
@@ -96,7 +96,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("Icon/stats-free-icon-font.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap("icons/stats.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_3.setIcon(icon1)
         self.pushButton_3.setIconSize(QtCore.QSize(26, 26))
         self.pushButton_3.setObjectName("pushButton_3")
@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("Icon/add-free-icon-font.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap("icons/add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_4.setIcon(icon2)
         self.pushButton_4.setIconSize(QtCore.QSize(26, 26))
         self.pushButton_4.setObjectName("pushButton_4")
@@ -138,7 +138,7 @@ class Ui_MainWindow(object):
 "background-color: rgb(145, 145, 145);\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("Icon/graduation-cap-free-icon-font.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap("icons/graduation-cap.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_5.setIcon(icon3)
         self.pushButton_5.setIconSize(QtCore.QSize(26, 26))
         self.pushButton_5.setFlat(False)
@@ -265,7 +265,7 @@ class Ui_MainWindow(object):
 "background-color: rgb(33, 34, 44);\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("Icon/search-free-icon-font.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap("icons/search.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_6.setIcon(icon4)
         self.pushButton_6.setObjectName("pushButton_6")
         self.horizontalLayout_5.addWidget(self.pushButton_6)
