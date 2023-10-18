@@ -12,7 +12,7 @@ Utilize o comando abaixo para instalar as bibliotecas recomendadas, pelo arquivo
 Ou instale separadamente com:
 <pre>
   pip install pyqt6
-  '''
+  ...
   pip install beautiful_date
 </pre>
 
