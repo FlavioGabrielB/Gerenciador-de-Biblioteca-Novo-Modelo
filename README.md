@@ -3,6 +3,10 @@ Aplicativo desktop para gerenciamento de biblioteca com design flat. Feito para 
 
 ![img](https://i.imgur.com/Sp7CSx0.png)
 
+## Funções
+  * Adicionar, Editar e Excluir dados das tabelas
+  * Calcular a data de entrega
+    
 ## Instalação
 Utilize o comando abaixo para instalar as bibliotecas recomendadas, pelo arquivo requirements.txt:
 <pre>
